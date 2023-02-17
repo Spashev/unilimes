@@ -3,6 +3,7 @@
 namespace App\Http\Repositories\Users;
 
 use App\Http\Repositories\RepositoryInterface;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -52,5 +53,20 @@ class UserRepository implements RepositoryInterface
         }
 
         return $query->paginate($limit);
+    }
+
+    public function categoryUserLikedStatistic(): array
+    {
+        $categories = Category::all();
+
+        $result = [];
+        foreach($categories as $category) {
+            $result[] = [
+              'title' => $category->title,
+              'userLikedCount' => $category->users->count()
+            ];
+        }
+
+        return $result;
     }
 }

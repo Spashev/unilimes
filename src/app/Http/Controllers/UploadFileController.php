@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Services\UploadFile as UploadFileService;
+use Illuminate\Http\Request;
 
 class UploadFileController extends Controller
 {
@@ -39,5 +40,12 @@ class UploadFileController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function categoryUserLikedStatistic(Request $request): Factory|View|Application
+    {
+        $categoryUserLikedStatistic = json_encode($this->service->getCategoryUserLikedStatistic());
+
+        return view('category', compact('categoryUserLikedStatistic'));
     }
 }

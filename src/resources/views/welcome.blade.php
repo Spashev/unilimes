@@ -71,8 +71,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mt-3 mb-4">
+                        <div class="row mt-3">
                             <button class="btn btn-warning">Filter</button>
+                        </div>
+                        <div class="row mt-1 mb-4">
+                            <a href="{{ route('category') }}" class="btn btn-info">Category</a>
                         </div>
                     </form>
                 </div>

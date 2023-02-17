@@ -16,4 +16,9 @@ class UploadFile
     {
         return $this->userRepository->filter($data, $limit);
     }
+
+    public function getCategoryUserLikedStatistic(): array
+    {
+        return $this->userRepository->categoryUserLikedStatistic();
+    }
 }
