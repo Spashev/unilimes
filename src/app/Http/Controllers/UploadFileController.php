@@ -35,7 +35,7 @@ class UploadFileController extends Controller
 
             UploadFile::dispatch($path);
 
-            return redirect()->back()->with('message', 'Dataset file uploading...');
+            return redirect()->back()->with('message', 'Dataset file uploading... plz refresh page.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
