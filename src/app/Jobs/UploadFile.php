@@ -14,6 +14,7 @@ class UploadFile implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private string $file;
+    private const PUBLIC_PATH = "/usr/share/nginx/html/project/storage/app/public/";
 
     public function __construct(string $file)
     {
@@ -22,7 +23,7 @@ class UploadFile implements ShouldQueue
 
     public function handle(): void
     {
-        $filePath = "/usr/share/nginx/html/project/storage/app/public/" . $this->file;
+        $filePath = self::PUBLIC_PATH . $this->file;
         UploadCsv::load($filePath);
     }
 }
