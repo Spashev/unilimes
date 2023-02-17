@@ -22,13 +22,6 @@ build: ## Build docker containers
 	$(DOCKER_COMP) build
 	@echo ">>> Base build done!"
 
-shell: ## Run bash inside dxloo container
-	${BACKEND} bash
-
-rebuild: ## Build docker containers without cache
-	$(DOCKER_COMP) build --no-cache
-	@echo ">>> Rebuild done!"
-
 start: ## Start all services
 	${DOCKER_COMP} up -d
 	@echo ">>> Containers started!"
@@ -37,32 +30,12 @@ stop: ## Stop all services
 	${DOCKER_COMP} stop
 	@echo ">>> Containers stopped!"
 
-destroy: ## Stop and remove all containers, networks, images, and volumes
-	${DOCKER_COMP} down --volumes --remove-orphans
-	@echo ">>> Containers destroyed!"
-
 composer-install: ## Install all dependencies with composer
 	${BACKEND} composer install --no-interaction
 	@echo ">>> Composer installation done!"
 
-model: ## Create new model
-	${BACKEND} php artisan make:model $(name)
-	@echo ">>> Model done!"
-
-controller: ## Create new controller
-	${BACKEND} php artisan make:controller $(name)
-	@echo ">>> Controller done!"
-
-migration: ## Create new migration
-	${BACKEND} php artisan make:migration $(name)
-	@echo ">>> Controller done!"
-
 migrate: ## Start all migrations
 	${BACKEND} php artisan migrate:fresh --seed
-	@echo ">>> Migrations done!"
-
-key-generate: ## Generate new key
-	${BACKEND} php artisan key:generate
 	@echo ">>> Migrations done!"
 
 queue: ## Queue

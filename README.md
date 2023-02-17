@@ -1,11 +1,10 @@
-# Tau startup
+# Test unilimes
 
 ## Stack
 - Docker
 - Php 8.0
 - Mysql
 - Nginx
-- RabbitMQ
 - Redis
 - Laravel
 
@@ -20,4 +19,8 @@ make start
 ### Stop docker
 ```
 make stop
+```
+### Start queue worker
+```
+make queue
 ```
