@@ -10,7 +10,7 @@
                         <div class="col-md-9">
                             <input type="file" name="csv_file" class="form-control form-control-lg">
                             @error('csv_file')
-                                <div class="mt-3 alert alert-danger">{{ $message }}</div>
+                            <div class="mt-3 alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         @if(Session::has('message'))
@@ -33,7 +33,9 @@
                             @csrf
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">Category</label>
-                                <input type="text" name="category" class="form-control" id="exampleFormControlInput1" placeholder="toys">
+                                <input type="text" name="category" class="form-control" id="exampleFormControlInput1"
+                                       placeholder="toys"
+                                       value="{{ $query['category'] ?? '' }}">
                                 @error('category')
                                 <div class="mt-3 alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -42,8 +44,8 @@
                                 <label for="exampleFormControlSelect1">Gender</label>
                                 <select name="gender" class="form-control" id="exampleFormControlSelect1">
                                     <option value="">Select gender</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                    <option value="female" {{ isset($query['gender']) ? $query['gender'] === "female" ? 'selected' : '' : '' }}>Female</option>
+                                    <option value="male" {{ isset($query['gender']) ? $query['gender'] === "male" ? 'selected' : '' : '' }}>Male</option>
                                 </select>
                                 @error('gender')
                                 <div class="mt-3 alert alert-danger">{{ $message }}</div>
@@ -51,21 +53,24 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">Date of Birth</label>
-                                <input type="text" name="birthDate" class="form-control" id="exampleFormControlInput1" placeholder="1990-11-27">
+                                <input type="text" name="birthDate" class="form-control" id="exampleFormControlInput1"
+                                       placeholder="1990-11-27" value="{{ $query['birthDate'] ?? ''  }}">
                                 @error('birthDate')
                                 <div class="mt-3 alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-1">
                                 <label for="exampleFormControlInput1">Age start</label>
-                                <input type="text" name="ageStart" class="form-control" id="exampleFormControlInput1" placeholder="10">
+                                <input type="text" name="ageStart" class="form-control" id="exampleFormControlInput1"
+                                       placeholder="10" value="{{ $query['ageStart'] ?? ''  }}">
                                 @error('ageStart')
                                 <div class="mt-3 alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-1">
                                 <label for="exampleFormControlInput1">Age end</label>
-                                <input type="text" name="ageEnd" class="form-control" id="exampleFormControlInput1" placeholder="20">
+                                <input type="text" name="ageEnd" class="form-control" id="exampleFormControlInput1"
+                                       placeholder="20" value="{{ $query['ageEnd'] ?? ''  }}">
                                 @error('ageEnd')
                                 <div class="mt-3 alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -94,18 +99,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
-                                <tr>
-                                    <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->firstname}}</td>
-                                    <td>{{$user->lastname}}</td>
-                                    <td>{{$user->birthDate}}</td>
-                                    <td>{{$user->gender}}</td>
-                                    <td>{{$user->age}}</td>
-                                    <td>{{$user->category->title}}</td>
-                                </tr>
-                            @endforeach
+                        @foreach($users as $user)
+                            <tr>
+                                <th scope="row">{{$user->id}}</th>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->firstname}}</td>
+                                <td>{{$user->lastname}}</td>
+                                <td>{{$user->birthDate}}</td>
+                                <td>{{$user->gender}}</td>
+                                <td>{{$user->age}}</td>
+                                <td>{{$user->category->title}}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

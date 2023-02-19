@@ -31,7 +31,7 @@
             data: {
                 labels: labelSet,
                 datasets: [{
-                    label: '# Statistic',
+                    label: '# Category statistic',
                     data: dataSet,
                     borderWidth: 1
                 }]
