@@ -22,6 +22,7 @@ services:
       - "443:43"
     depends_on:
       - mysql
+      - redis
     volumes:
       - ./src:/usr/share/nginx/html/project
 

@@ -12,6 +12,9 @@
 ```
 make install
 ```
+<hr>
+<hr>
+
 ### Start docker
 ```
 make start

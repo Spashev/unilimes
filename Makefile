@@ -16,14 +16,15 @@ help: ## Help message
 
 PROJECT_DIR=$(shell dirname $(realpath $(MAKEFILE_LIST)))
 
-install: build start composer-install migrate ## Spin-up the project with minimal data
+install: build start composer-install migrate queue ## Spin-up the project with minimal data
 
 build: ## Build docker containers
 	$(DOCKER_COMP) build
 	@echo ">>> Base build done!"
 
-start: ## Start all services
+start:
 	${DOCKER_COMP} up -d
+	${BACKEND} php artisan queue:work
 	@echo ">>> Containers started!"
 
 stop: ## Stop all services
@@ -38,6 +39,6 @@ migrate: ## Start all migrations
 	${BACKEND} php artisan migrate:fresh --seed
 	@echo ">>> Migrations done!"
 
-queue: ## Queue
+queue:
 	${BACKEND} php artisan queue:work
 	@echo ">>> worker done!"
